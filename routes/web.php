@@ -56,3 +56,10 @@ Route::get('/soal/{$request}', 'SoalController@getNilai');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/rinbisa/{id}/viewedit', 'rinbisaController@edit_p');
