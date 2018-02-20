@@ -22,13 +22,20 @@ class LatihanController extends Controller
     public function create(Request $request){
     	
     	$this->validate($request, [
-    		'nama' => 'required|min:3',
-    		'alamat' => 'required|max:25' 
+//    		'nama' => 'required|min:3',
+//    		'alamat' => 'required|max:25', 
+            'upd_img' => 'mimes:jpg,jpeg,png|max:1000'
     	]);
+        
+        //upload foto
+        $fileName = time() . '.' . $request->file('upd_img')->getClientOriginalExtension();
+        $request->file('upd_img')->storeAs('public/latihan', $fileName);
+      
     	$latihan = new Latihan;
     	$latihan->nama = $request->nama;
     	$latihan->umur = $request->umur;
     	$latihan->alamat = $request->alamat;
+    	$latihan->upd_img = $fileName;
     	$latihan->save();
 
     	return redirect('latihan');

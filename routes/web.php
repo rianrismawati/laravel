@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Route::get('/test', function () {
 //    return 'Hallo rin!';
 //});
@@ -52,14 +53,22 @@ Route::get('latihan/destroy/{id}', 'LatihanController@destroy');
 Route::get('/soal', 'SoalController@index');
 Route::get('/soal/{$request}', 'SoalController@getNilai');
 
-
+//user
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/rinbisa/create', 'rinbisaController@viewcreate')->name('rinbisa.viewcreate');
+Route::post('/rinbisa/create', 'rinbisaController@createC')->name('rinbisa.createC');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/rinbisa/{id}/editfp', 'rinbisaController@vieweditfp')->name('rinbisa.vieweditfp');
+Route::put('/rinbisa/{id}/editfp', 'rinbisaController@editfp')->name('rinbisa.editfp');
+
+Route::get('/rinbisa/{id}/edit', 'rinbisaController@viewedit')->name('rinbisa.viewedit');
+Route::put('/rinbisa/{id}/edit', 'rinbisaController@editdata')->name('rinbisa.editdata');
 
 
-Route::get('/rinbisa/{id}/viewedit', 'rinbisaController@edit_p');
+//adm
+Route::get('/rinbisa', 'rinbisaController@dash_adm')->name('rinbisa.dash_adm');
+
+Route::get('/rinbisa/user', 'rinbisaController@user')->name('rinbisa.user');

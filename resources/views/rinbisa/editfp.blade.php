@@ -9,12 +9,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <center>
-                        <img src="" alt=""><br>
-                        <a href="{{ route('rinbisa.vieweditfp', Auth::id()) }}">Change Foto profile</a>
-                    </center>
-                </div>
+                <div class="panel-heading">FOTO</div>
                 <div class="panel-body">
                     <center>
                         <a href="{{ route('rinbisa.viewedit', Auth::id()) }}" class="btn btn-primary">Edit Profile</a><br><br>
@@ -42,19 +37,16 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+            <form action="{{ route('rinbisa.editfp', Auth::id()) }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Change Foto Profile</label>
+                    <input type="file" name="fp" class="form-control">
+                    
+                    <input type="submit" name="editpf" value="Edit Foto Profile">  
+                    {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="PUT">
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

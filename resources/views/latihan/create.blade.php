@@ -1,6 +1,8 @@
 <h1>Create Data Latihan</h1>
 
-<form action="/latihan" method="post">
+<form action="/latihan" method="post" enctype="multipart/form-data">
+    Alamat<br>
+    <input type="file" name="upd_img"><br>
 	Nama<br>
 	<input type="text" name="nama"><br>
 
