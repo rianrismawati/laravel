@@ -2,40 +2,22 @@
 
 @section('content')
     <div class="container">
-        <div class="col-md-offset-4">
-            <h2>Edit Profile</h2><br>
-        </div>
-
             <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">FOTO</div>
                 <div class="panel-body">
                     <center>
                         <a href="{{ route('rinbisa.viewedit', Auth::id()) }}" class="btn btn-primary">Edit Profile</a><br><br>
-                        <a href="" >Campaign Saya</a><br><br>
-                        <a href="">Donasi Saya</a><br><br>
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Akun Saya</a>
-                                </h4>
-                              </div>
-                              <div id="collapse1" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                  <a href="">Edit Profile Picture</a><br>
-                                  <a href="">Verifikasi Akun</a>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-
+                        <a href="{{ route('rinbisa.viewcamp') }}" >Campaign Saya</a><br><br>
+                        <a href="{{ route('rinbisa.viewdon') }}">Donasi Saya</a><br><br>
+                        <a href="">Verifikasi Akun</a>
                     </center>
 
                 </div>
             </div>
         </div>
     <div class="col-md-8">
+        <h2>Edit Profile</h2><br>
         <form action="{{ route('rinbisa.editdata', $edit->id) }}" method="post">
             <div class="form-group">
                 <label>Nama Lengkap</label>

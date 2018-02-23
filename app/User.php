@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Campaign;
+use App\Models\Donasi;
 
 class User extends Authenticatable
 {
@@ -27,4 +29,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function tableDon()
+    {
+        return $this->hasMany('App\Models\Donasi', 'id_don');
+    }
+
+    public function tableCamp(){
+        return $this->hasMany('App\Models\Campaign', 'id_camp');
+    }
 }
