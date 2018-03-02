@@ -88,6 +88,8 @@ Route::put('/rinbisa/{id}/edit', 'rinbisaController@editdata')->name('rinbisa.ed
 
 //proses donasi
 Route::get('/rinbisa/{id}/prosesDon', 'rinbisaController@viewproses')->name('rinbisa.viewproses');
+Route::post('/rinbisa/{id}/prosesDon', 'rinbisaController@prosesD')->name('rinbisa.prosesD');
+Route::put('/rinbisa/{id}/prosesDon2', 'rinbisaController@prosesAkh')->name('rinbisa.prosesAkh');
 
 
 
@@ -102,5 +104,6 @@ Route::put('/rinbisa/admin/donasi/{id}', 'rinbisaController@update_d')->name('ri
 
 Route::get('/rinbisa/admin/campaign', 'rinbisaController@viewcamp_a')->name('rinbisa.viewcamp_a');
 Route::get('/rinbisa/admin/campaign/{id}', 'rinbisaController@detail_c')->name('rinbisa.detail_c');
+Route::get('/rinbisa/admin/campaign/delete_c/{id}', 'rinbisaController@delete_c')->name('rinbisa.delete_c');
 
 Route::get('/rinbisa/admin/user', 'rinbisaController@viewuser_a')->name('rinbisa.viewuser_a');

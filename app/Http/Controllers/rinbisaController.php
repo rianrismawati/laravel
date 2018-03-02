@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class rinbisaController extends Controller
 {
+
    //user
     public function index(){
         $readcamp = Campaign::all();
@@ -68,8 +69,25 @@ class rinbisaController extends Controller
 //ini
     public function viewdet($id){
         $det_camp = Campaign::where('id_camp',$id)->get();
+        $tamFun = Donasi::select('users.name','donasi.nom_don','donasi.komen_d')
+                        ->join('users', 'users.id', '=', 'donasi.id')
+                        ->where('donasi.id_camp', $id)
+                        ->get();
 
-        return view('rinbisa/detail_camp', ['detail' => $det_camp]);
+        $users = array();
+        $i = 0;
+        foreach ($tamFun as $key) {
+            $users[$i]['name'] = $key->name;
+            $users[$i]['nominal'] = $key->nom_don;
+            $users[$i]['komentar'] = $key->komen_d;
+            $i++;
+        }
+
+        return view('rinbisa/detail_camp')->with([
+                                                'detail' => $det_camp,
+                                                'tamFun' => $tamFun,
+                                                'users'  => $users
+                                            ]); 
     }
 
     public function viewdon(){
@@ -116,12 +134,52 @@ class rinbisaController extends Controller
         return redirect('/home');
     }
 
-    public function viewproses(){
-        // $contri = Campaign::where('id_camp', $id)->get();
+    public function viewproses($id){
+        $contri = Campaign::where('id_camp', $id)->first();
 
-        return view('/rinbisa/prosesDon');
+        return view('/rinbisa/prosesDon', ['prosesdon1' => $contri]);
     }
-    
+    public function prosesD(Request $request, $id){
+        $contri1 = Campaign::where('id_camp', $id)->first();
+        $proses1 = new Donasi;
+        $proses1->id_camp = $id;
+        $proses1->id      = Auth::id();
+        $proses1->nom_don = $request->donasi;
+        $proses1->komen_d = $request->komentar;
+        $proses1->save();
+
+        if ($proses1 == true) {
+            $proses1->status = 0;
+        }
+
+
+        // $request->session()->put('nomimal', 'donasi');
+        // $request->session()->put('komentar', 'komentar');
+        // dd('session');
+
+        return view('/rinbisa/prosesDon2', ['prosesdon2' => $contri1]);
+    }
+    public function prosesAkh(Request $request, $id){
+         $contri2  = Campaign::where('id_camp', $id)->first();
+         $test = Donasi::where('id', '=', Auth::id())->orderBy('id_don', 'DESC')->take(1)->first();
+         // dd($test);
+
+         // $contri2->nom_don      = $request->session()->put('nomimal');
+         // $contri2->komen_d      = $request->session()->put('komentar');
+         $test->transfer_via = $request->pemb;
+         $test->save();
+
+         
+         if ($test == true) {
+            $test->status = 1;
+         }
+
+        return view('/rinbisa/done', ['pa' => $test]);
+    }
+   
+
+
+
     //adm
     public function dash_adm(){
         return view('rinbisa/home_adm');
@@ -134,7 +192,7 @@ class rinbisaController extends Controller
     }
 
     public function detail_d($id){
-        $don = Donasi::join('campaign', 'donasi.id_camp', '=', 'campaign.id_camp')->           join('users', 'donasi.id', '=', 'users.id')
+        $don = Donasi::join('campaign', 'donasi.id_camp', '=', 'campaign.id_camp')
                             ->where('id_don',$id)
                             ->get();
 
@@ -160,10 +218,16 @@ class rinbisaController extends Controller
 
         return view('/rinbisa/admin/detail_camp', ['detailCamp' => $det]);
     }
+    public function delete_c($id){
+        $del = Campaign::find($id);
+        $del->delete();
 
+        return redirect('rinbisa/admin/campaign');
+    }
     public function viewuser_a(){
         $users = User::all();
 
         return view('rinbisa/admin/user', ['readuser' => $users]);
     }
+
 }

@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">FOTO</div>
                 <div class="panel-body">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <form action="{{ route('rinbisa.editfp', Auth::id()) }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Change Foto Profile</label>

@@ -12,7 +12,6 @@
                         <a href="{{ route('rinbisa.viewdon') }}">Donasi Saya</a><br><br>
                         <a href="">Verifikasi Akun</a>
                     </center>
-
                 </div>
             </div>
         </div>

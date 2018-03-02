@@ -30,6 +30,7 @@
 	    			<td>{{$read -> deadline}}</td>
 	    			<td>{{$read -> category}}</td>
 	    			<td><a href="{{ route('rinbisa.detail_c', $read->id_camp)}}" class="btn btn-primary">Detail</a></td>
+	    			<td><a href="{{url('rinbisa/admin/campaign/delete_c/'.$read->id_camp)}}" class="btn btn-danger">Delete</a></td>
 	    		</tr>
 	    		@endforeach
 	    	</table>

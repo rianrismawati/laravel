@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-            <div class="col-md-4">
+            <div class="col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">FOTO</div>
                 <div class="panel-body">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
     	<h3>Donasi</h3>
     	<table class="table">
           <tr>

@@ -25,7 +25,13 @@
                 <p>{{ $det->desk_camp }}</p>
             </div>
             <div class="tab-pane" id="Fundraiser">
-                
+                <h1>Fundraising</h1>
+			        @foreach($users as $user)
+			        	<p>
+			        		{{$user['name']}} (Rp. {{$user['nominal']}}) <br>
+			        		{{ $user['komentar']}}
+			        	</p>
+			        @endforeach
             </div>
             <div class="tab-pane" id="Pesan">
              	<form>
@@ -41,10 +47,8 @@
              			<label>Perihal</label>
              			<input type="text" name="" class="form-control">
              		</div>
-             		<textarea name="editor1" id="editor1"></textarea>
-             		<script>
-						CKEDITOR.replace( 'editor1' );
-					</script>
+             		<textarea name="editor1" class="form-control" id="article-ckeditor"></textarea>
+             		
              		<div class="form-group">
              			<label>Pesan</label>
              			<textarea class="form-control"></textarea>
@@ -57,3 +61,10 @@
 @endforeach
 		
 @endsection
+
+@section('js')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
+ @append
